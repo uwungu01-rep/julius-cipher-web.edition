@@ -47,28 +47,28 @@ document.getElementById("plus").onclick = function() {
   }
 }
 
-  document.getElementById("minus").onclick = function() {
-    cip = [];
-    cipcap = [];
-    shf -= 1;
-    document.getElementById("shift").textContent = shf;
-    sort(shf, alp, alpcap, cip, cipcap);
+document.getElementById("minus").onclick = function() {
+  cip = [];
+  cipcap = [];
+  shf -= 1;
+  document.getElementById("shift").textContent = shf;
+  sort(shf, alp, alpcap, cip, cipcap);
 
-    if(shf === 1) {
-      document.getElementById("minus").disabled = true;
-    }
-    else if(shf > 25 || shf < 1) {
-      document.getElementById("plus").disabled = false;
-      document.getElementById("minus").disabled = false;
-    }
-
-    if(document.getElementById("TextToCaesar").checked) {
-      document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
-    }
-    else if(document.getElementById("CaesarToText").checked) {
-      document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
-    }
+  if(shf === 1) {
+    document.getElementById("minus").disabled = true;
   }
+  else if(shf > 25 || shf < 1) {
+    document.getElementById("plus").disabled = false;
+    document.getElementById("minus").disabled = false;
+  }
+
+  if(document.getElementById("TextToCaesar").checked) {
+    document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
+  }
+  else if(document.getElementById("CaesarToText").checked) {
+    document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
+  }
+}
 
 
 document.getElementById("inp").oninput = function() {
