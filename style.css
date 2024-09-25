@@ -1,0 +1,118 @@
+body {
+    text-align: left;
+    background-color: #000000;
+    color: black;
+    font-family: Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: baseline;
+    align-content: space-between;
+    flex-flow: row nowrap;
+    gap: 50px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+}
+
+.elements {
+    flex: .1;
+}
+
+#H1 {
+    color: black;
+    margin-top: 18vh;
+    padding-top: 10px;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#inp {
+    width: auto;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 3px;
+}
+
+#lable {
+    font-size: 1.5em;
+    margin-bottom: -15px;
+}
+
+#plus {
+    font-size: 2em;
+    background-color: white;
+    border-width: 0px;
+}
+
+#minus {
+    font-size: 2em;
+    background-color: white;
+    border-width: 0px;
+}
+
+#plus:active {
+    color: rgb(200, 200, 200);
+}
+
+#minus:active {
+    color: rgb(200, 200, 200);
+}
+
+#plus:disabled {
+    color: white;
+}
+
+#minus:disabled {
+    color: white;
+}
+
+#shift {
+    font-size: 2em;
+}
+
+form {
+    background-color: white;
+    text-align: center;
+    max-width: 550px;
+    margin: auto;
+    border-color: white;
+    border-radius: 20px;
+}
+
+#TextToCaesar {
+    margin-top: -8px;
+    height: 17px;
+    width: 17px;
+    vertical-align: middle;
+}
+
+#lttc {
+    font-size: 1.5em
+}
+
+#CaesarToText {
+    margin-top: -8px;
+    height: 17px;
+    width: 17px;
+    vertical-align: middle;
+}
+
+#lctt {
+    font-size: 1.5em
+}
+
+#out {
+    font-size: 2em;
+}
+
+#p3 {
+    font-size: 2em;
+}
