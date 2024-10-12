@@ -34,7 +34,7 @@ document.getElementById("plus").onclick = function() {
   if(shf === 25) {
     document.getElementById("plus").disabled = true;
   }
-  else if(shf > 25 || shf < 1) {
+  else if(shf < 25 && shf > 1) {
     document.getElementById("plus").disabled = false;
     document.getElementById("minus").disabled = false;
   }
@@ -57,7 +57,7 @@ document.getElementById("minus").onclick = function() {
   if(shf === 1) {
     document.getElementById("minus").disabled = true;
   }
-  else if(shf > 25 || shf < 1) {
+  else if(shf < 25 && shf > 1) {
     document.getElementById("plus").disabled = false;
     document.getElementById("minus").disabled = false;
   }
