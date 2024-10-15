@@ -1,8 +1,20 @@
 body {
-    text-align: left;
     background-color: #000000;
     color: black;
     font-family: Helvetica, sans-serif;
+}
+
+.box {
+    margin: auto;
+    width: auto;
+    height: auto;
+    margin-top: 10vh;
+    padding-top: 15vh;
+    background-color: white;
+    text-align: center;
+    max-width: 550px;
+    border-color: white;
+    border-radius: 20px;
 }
 
 .container {
@@ -12,9 +24,9 @@ body {
     align-items: baseline;
     align-content: space-between;
     flex-flow: row nowrap;
-    gap: 50px;
-    margin-top: -10px;
-    margin-bottom: -20px;
+    gap: 3vw;
+    margin-top: -1.5vh;
+    margin-bottom: -5vh;
 }
 
 .elements {
@@ -23,27 +35,27 @@ body {
 
 #H1 {
     color: black;
-    margin-top: 18vh;
-    padding-top: 10px;
+    margin-top: -10vh;
+    padding-top: -10vh;
     font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom: 1.5vh;
 }
 
 #inp {
     width: auto;
     font-size: 2em;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 2vh;
     border-style: solid;
     border-width: 3px;
-    border-style: solid;
     border-color: black;
     border-radius: 3px;
+    align-items: center;
 }
 
 #lable {
     font-size: 1.5em;
-    margin-bottom: -15px;
+    padding-bottom: 5vh;
 }
 
 #plus {
@@ -76,15 +88,6 @@ body {
 
 #shift {
     font-size: 2em;
-}
-
-form {
-    background-color: white;
-    text-align: center;
-    max-width: 550px;
-    margin: auto;
-    border-color: white;
-    border-radius: 20px;
 }
 
 #TextToCaesar {
