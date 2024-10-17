@@ -6,20 +6,19 @@ body {
 
 .box {
     margin: auto;
-    width: auto;
-    height: auto;
     margin-top: 10vh;
     padding-top: 15vh;
     background-color: white;
     text-align: center;
-    max-width: 550px;
-    border-color: white;
+    max-width: 38vw;
     border-radius: 20px;
+    justify-content: center;
+    word-wrap: break-word;
 }
 
 .container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: center;
     align-items: baseline;
     align-content: space-between;
@@ -53,69 +52,36 @@ body {
     align-items: center;
 }
 
-#lable {
-    font-size: 1.5em;
-    padding-bottom: 5vh;
-}
-
-#plus {
+#plus, #minus {
     font-size: 2em;
     background-color: white;
     border-width: 0px;
 }
 
-#minus {
-    font-size: 2em;
-    background-color: white;
-    border-width: 0px;
-}
-
-#plus:active {
+#plus:active, #minus:active {
     color: rgb(200, 200, 200);
 }
 
-#minus:active {
-    color: rgb(200, 200, 200);
-}
-
-#plus:disabled {
+#plus:disabled, #minus:disabled {
     color: white;
 }
 
-#minus:disabled {
-    color: white;
-}
-
-#shift {
-    font-size: 2em;
-}
-
-#TextToCaesar {
+#TextToCaesar, #CaesarToText {
     margin-top: -8px;
     height: 17px;
     width: 17px;
     vertical-align: middle;
 }
 
-#lttc {
-    font-size: 1.5em
-}
-
-#CaesarToText {
-    margin-top: -8px;
-    height: 17px;
-    width: 17px;
-    vertical-align: middle;
-}
-
-#lctt {
+#lttc, #lctt {
     font-size: 1.5em
 }
 
 #out {
+    margin: 2vw;
     font-size: 2em;
 }
 
-#p3 {
+#p3, #shift {
     font-size: 2em;
 }
