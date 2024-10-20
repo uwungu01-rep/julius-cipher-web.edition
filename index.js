@@ -1,109 +1,83 @@
-const alp = "abcdefghijklmnopqrstuvwxyz".split("");
-const alpcap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  
-var cip = [];
-var cipcap = [];
-var shf = 7;
-var chr;
+const [ALP, ALPCAP] = ["abcdefghijklmnopqrstuvwxyz".split(""), "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")];
 
-sort(shf, alp, alpcap, cip, cipcap);
-document.getElementById("TextToCaesar").checked = true;
+var [cip, cipcap, shf, chr] = [[], [], 7];
+
+sort(shf, ALP, ALPCAP, cip, cipcap);
 document.getElementById("shift").textContent = shf;
 chr = document.getElementById("inp").value;
-document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
+document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
 
-document.getElementById("TextToCaesar").onclick = function() {
-  chr = document.getElementById("inp").value;  
-  sort(shf, alp, alpcap, cip, cipcap);
-  document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
-}
+document.getElementById("copy").addEventListener("click", function(){
+  function temp() {
+    document.getElementById("copy").textContent = "Copy Output";
+  }
+  navigator.clipboard.writeText(document.getElementById("out").innerHTML);
+  document.getElementById("copy").textContent = "Copied to clipboard!";
+  
+  if(document.getElementById("copy").innerHTML === "Copy Output"){
+    setTimeout(temp, 1000);
+  }
+});
 
-document.getElementById("CaesarToText").onclick = function() {
+document.getElementById("TextToCaesar").addEventListener("click", function() {
   chr = document.getElementById("inp").value;
-  sort(shf, alp, alpcap, cip, cipcap);
-  document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
-}
+  sort(shf, ALP, ALPCAP, cip, cipcap);
+  document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
+});
 
-document.getElementById("plus").onclick = function() {
-  cip = [];
-  cipcap = [];
+document.getElementById("CaesarToText").addEventListener("click", function() {
+  chr = document.getElementById("inp").value;
+  sort(shf, ALP, ALPCAP, cip, cipcap);
+  document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
+});
+
+document.getElementById("plus").addEventListener("click", function() {
   shf += 1;
-  document.getElementById("shift").textContent = shf;
-  sort(shf, alp, alpcap, cip, cipcap);
-
   if(shf === 25) {
     document.getElementById("plus").disabled = true;
   }
-  else if(shf < 25 && shf > 1) {
-    document.getElementById("plus").disabled = false;
-    document.getElementById("minus").disabled = false;
-  }
+  short()
+});
 
-  if(document.getElementById("TextToCaesar").checked) {
-    document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
-  }
-  else if(document.getElementById("CaesarToText").checked) {
-    document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
-  }
-}
-
-document.getElementById("minus").onclick = function() {
-  cip = [];
-  cipcap = [];
+document.getElementById("minus").addEventListener("click", function() {
   shf -= 1;
-  document.getElementById("shift").textContent = shf;
-  sort(shf, alp, alpcap, cip, cipcap);
-
   if(shf === 1) {
     document.getElementById("minus").disabled = true;
   }
-  else if(shf < 25 && shf > 1) {
-    document.getElementById("plus").disabled = false;
-    document.getElementById("minus").disabled = false;
-  }
-
-  if(document.getElementById("TextToCaesar").checked) {
-    document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
-  }
-  else if(document.getElementById("CaesarToText").checked) {
-    document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
-  }
-}
-
+  short()
+});
 
 document.getElementById("inp").oninput = function() {
   chr = document.getElementById("inp").value;
   if(document.getElementById("TextToCaesar").checked) {
-    sort(shf, alp, alpcap, cip, cipcap);
-    document.getElementById("out").textContent = Encipher(alp, cip, alpcap, cipcap, chr);
+    document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
   }
   else if(document.getElementById("CaesarToText").checked) {
-    sort(shf, alp, alpcap, cip, cipcap);
-    document.getElementById("out").textContent = Decipher(alp, cip, alpcap, cipcap, chr);
+    document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
   }
 }
 
-function sort(shf, alp, alpcap, cip, cipcap) {
-  for(var i = shf; i < alp.length + shf; i++) {
-    if(i < alp.length) {
-      cip.push(alp[i]);
-      cipcap.push(alpcap[i]);
+function sort(shf, ALP, ALPCAP, cip, cipcap) {
+  for(var i = shf; i < ALP.length + shf; i++) {
+    if(i < ALP.length) {
+      cip.push(ALP[i]);
+      cipcap.push(ALPCAP[i]);
     }
     else {
-      cip.push(alp[Math.abs(i - alp.length)]);
-      cipcap.push(alpcap[Math.abs(i - alp.length)]);
+      cip.push(ALP[Math.abs(i - ALP.length)]);
+      cipcap.push(ALPCAP[Math.abs(i - ALP.length)]);
     }
   }
 }
 
-function Encipher(alp, cip, alpcap, cipcap, chr) {
+function Encipher(ALP, cip, ALPCAP, cipcap, chr) {
   var oupt = "";
   for(var k = 0; k < chr.length; k++) {
-    if(alp.includes(chr[k])) {
-      oupt += cip[alp.indexOf(chr[k])];
+    if(ALP.includes(chr[k])) {
+      oupt += cip[ALP.indexOf(chr[k])];
     }
-    else if(alpcap.includes(chr[k])) {
-      oupt += cipcap[alpcap.indexOf(chr[k])];
+    else if(ALPCAP.includes(chr[k])) {
+      oupt += cipcap[ALPCAP.indexOf(chr[k])];
     }
     else {
       oupt += chr[k];
@@ -112,18 +86,36 @@ function Encipher(alp, cip, alpcap, cipcap, chr) {
   return oupt;
 }
 
-function Decipher(alp, cip, alpcap, cipcap, chr) {
+function Decipher(ALP, cip, ALPCAP, cipcap, chr) {
   var oupt = "";
   for(var k = 0; k < chr.length; k++) {
     if(cip.includes(chr[k])) {
-      oupt += alp[cip.indexOf(chr[k])];
+      oupt += ALP[cip.indexOf(chr[k])];
     }
     else if(cipcap.includes(chr[k])) {
-      oupt += alpcap[cipcap.indexOf(chr[k])];
+      oupt += ALPCAP[cipcap.indexOf(chr[k])];
     }
     else {
       oupt += chr[k];
     }
   }
   return oupt;
+}
+
+function short() {
+  [cip, cipcap] = [[], []]
+  document.getElementById("shift").textContent = shf;
+  sort(shf, ALP, ALPCAP, cip, cipcap);
+
+  if(shf < 25 && shf > 1) {
+    document.getElementById("plus").disabled = false;
+    document.getElementById("minus").disabled = false;
+  }
+
+  if(document.getElementById("TextToCaesar").checked) {
+    document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
+  }
+  else if(document.getElementById("CaesarToText").checked) {
+    document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
+  }
 }
