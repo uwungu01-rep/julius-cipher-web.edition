@@ -13,11 +13,8 @@ document.getElementById("copy").addEventListener("click", function(){
   }
   navigator.clipboard.writeText(document.getElementById("out").innerHTML);
   document.getElementById("copy").textContent = "Copied to clipboard!";
-  
-  if(document.getElementById("copy").innerHTML === "Copy Output"){
-    setTimeout(temp, 1000);
-  }
-});
+  setTimeout(temp, 1000);
+  });
 
 document.getElementById("TextToCaesar").addEventListener("click", function() {
   chr = document.getElementById("inp").value;
