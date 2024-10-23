@@ -108,14 +108,14 @@ function short() {
 
 function algorithm(shf) {
   var temp = shf;
-    if(temp >= 0) {
-      temp = temp % 26;
-      return temp;
+  if(temp >= 0) {
+    temp = temp % 26;
+    return temp;
+  }
+  else {
+    while(temp < 0) {
+      temp = (26 + temp) % 26;
     }
-    else {
-      while(temp < 0) {
-			temp = (26 + temp) % 26;
-		}
-		return temp;
-	}
+    return temp;
+  }
 }
