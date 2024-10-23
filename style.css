@@ -62,10 +62,6 @@ body {
     color: rgb(200, 200, 200);
 }
 
-#plus:disabled, #minus:disabled {
-    color: transparent;
-}
-
 #TextToCaesar, #CaesarToText {
     margin-top: -1.3vh;
     height: 4.5vh;
