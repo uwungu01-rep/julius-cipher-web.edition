@@ -50,6 +50,7 @@ body {
     border-color: black;
     border-radius: .3vw;
     align-items: center;
+    resize: none;
 }
 
 #plus, #minus {
@@ -77,6 +78,7 @@ body {
     margin: 2vw;
     margin-bottom: .5vh;
     font-size: 2em;
+    white-space: pre-wrap;
 }
 
 #p3, #shift {
