@@ -2,7 +2,7 @@ const [ALP, ALPCAP] = ["abcdefghijklmnopqrstuvwxyz".split(""), "ABCDEFGHIJKLMNOP
 
 var [cip, cipcap, shf, chr] = [[], [], 7];
 
-sort(shf, ALP, ALPCAP, cip, cipcap);
+sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
 document.getElementById("shift").textContent = shf;
 chr = document.getElementById("inp").value;
 document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
@@ -18,29 +18,23 @@ document.getElementById("copy").addEventListener("click", function(){
 
 document.getElementById("TextToCaesar").addEventListener("click", function() {
   chr = document.getElementById("inp").value;
-  sort(shf, ALP, ALPCAP, cip, cipcap);
+  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
   document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
 });
 
 document.getElementById("CaesarToText").addEventListener("click", function() {
   chr = document.getElementById("inp").value;
-  sort(shf, ALP, ALPCAP, cip, cipcap);
+  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
   document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
 });
 
 document.getElementById("plus").addEventListener("click", function() {
   shf += 1;
-  if(shf === 25) {
-    document.getElementById("plus").disabled = true;
-  }
   short()
 });
 
 document.getElementById("minus").addEventListener("click", function() {
   shf -= 1;
-  if(shf === 1) {
-    document.getElementById("minus").disabled = true;
-  }
   short()
 });
 
@@ -102,12 +96,7 @@ function Decipher(ALP, cip, ALPCAP, cipcap, chr) {
 function short() {
   [cip, cipcap] = [[], []]
   document.getElementById("shift").textContent = shf;
-  sort(shf, ALP, ALPCAP, cip, cipcap);
-
-  if(shf < 25 && shf > 1) {
-    document.getElementById("plus").disabled = false;
-    document.getElementById("minus").disabled = false;
-  }
+  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
 
   if(document.getElementById("TextToCaesar").checked) {
     document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
@@ -115,4 +104,18 @@ function short() {
   else if(document.getElementById("CaesarToText").checked) {
     document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
   }
+}
+
+function algorithm(shf) {
+	var temp = shf;
+	if(temp >= 0) {
+		temp = temp % 26;
+		return temp;
+	}
+	else {
+		while(temp < 0) {
+			temp = (26 + temp) % 26;
+		}
+		return temp;
+	}
 }
