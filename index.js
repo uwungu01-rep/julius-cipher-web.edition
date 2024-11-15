@@ -1,121 +1,120 @@
-const [ALP, ALPCAP] = ["abcdefghijklmnopqrstuvwxyz".split(""), "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")];
+const [alphabet, upper_alphabet] = ["abcdefghijklmnopqrstuvwxyz".split(""), "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")];
 
-var [cip, cipcap, shf, chr] = [[], [], 7];
+var [shifted, upper_shifted, j_shift, j_user_input] = [[], [], 7];
 
-sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
-document.getElementById("shift").textContent = shf;
-chr = document.getElementById("inp").value;
-document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
+const shift = document.getElementById("shift");
+const user_input = document.getElementById("user_input");
+const output = document.getElementById("out");
+const copy_button = document.getElementById("copy");
+const text_to_caesar = document.getElementById("TextToCaesar");
+const caesar_to_text = document.getElementById("CaesarToText");
 
-document.getElementById("copy").addEventListener("click", function(){
-  function temp() {
-    document.getElementById("copy").textContent = "Copy Output";
-  }
-  navigator.clipboard.writeText(document.getElementById("out").innerHTML);
-  document.getElementById("copy").textContent = "Copied to clipboard!";
-  setTimeout(temp, 1000);
-  });
+sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
+shift.textContent = j_shift;
+j_user_input = user_input.value;
+output.textContent = Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
 
-document.getElementById("TextToCaesar").addEventListener("click", function() {
-  chr = document.getElementById("inp").value;
-  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
-  document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
+copy_button.addEventListener("click", function(){
+    navigator.clipboard.writeText(output.innerHTML);
+    copy_button.textContent = "Copied to clipboard!";
+    setTimeout(function() {
+        copy_button.textContent = "Copy Output";
+    }, 1000);
 });
 
-document.getElementById("CaesarToText").addEventListener("click", function() {
-  chr = document.getElementById("inp").value;
-  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
-  document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
+text_to_caesar.addEventListener("click", function() {
+    j_user_input = document.getElementById("user_input").value;
+    sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
+    output.innerHTML = Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
+});
+
+caesar_to_text.addEventListener("click", function() {
+    j_user_input = document.getElementById("user_input").value;
+    sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
+    output.innerHTML = Decipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
 });
 
 document.getElementById("plus").addEventListener("click", function() {
-  shf += 1;
-  short()
+    j_shift += 1;
+    short()
 });
 
 document.getElementById("minus").addEventListener("click", function() {
-  shf -= 1;
-  short()
+    j_shift -= 1;
+    short()
 });
 
-document.getElementById("inp").oninput = function() {
-  chr = document.getElementById("inp").value;
-  if(document.getElementById("TextToCaesar").checked) {
-    document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
-  }
-  else if(document.getElementById("CaesarToText").checked) {
-    document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
-  }
+user_input.addEventListener("input", function() {
+    j_user_input = user_input.value;
+    short()
+});
+
+function sort(j_shift, alphabet, upper_alphabet, shifted, upper_shifted) {
+    for(var i = j_shift; i < alphabet.length + j_shift; i++) {
+        if(i < alphabet.length) {
+            shifted.push(alphabet[i]);
+            upper_shifted.push(upper_alphabet[i]);
+        }
+        else {
+            shifted.push(alphabet[Math.abs(i - alphabet.length)]);
+            upper_shifted.push(upper_alphabet[Math.abs(i - alphabet.length)]);
+        }
+    }
 }
 
-function sort(shf, ALP, ALPCAP, cip, cipcap) {
-  for(var i = shf; i < ALP.length + shf; i++) {
-    if(i < ALP.length) {
-      cip.push(ALP[i]);
-      cipcap.push(ALPCAP[i]);
+function Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input) {
+    var oupt = "";
+    for(var k = 0; k < j_user_input.length; k++) {
+        if(alphabet.includes(j_user_input[k])) {
+            oupt += shifted[alphabet.indexOf(j_user_input[k])];
+        }
+        else if(upper_alphabet.includes(j_user_input[k])) {
+            oupt += upper_shifted[upper_alphabet.indexOf(j_user_input[k])];
+        }
+        else {
+            oupt += j_user_input[k];
+        }
     }
-    else {
-      cip.push(ALP[Math.abs(i - ALP.length)]);
-      cipcap.push(ALPCAP[Math.abs(i - ALP.length)]);
-    }
-  }
+    return oupt;
 }
 
-function Encipher(ALP, cip, ALPCAP, cipcap, chr) {
-  var oupt = "";
-  for(var k = 0; k < chr.length; k++) {
-    if(ALP.includes(chr[k])) {
-      oupt += cip[ALP.indexOf(chr[k])];
+function Decipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input) {
+    var oupt = "";
+    for(var k = 0; k < j_user_input.length; k++) {
+        if(shifted.includes(j_user_input[k])) {
+            oupt += alphabet[shifted.indexOf(j_user_input[k])];
+        }
+        else if(upper_shifted.includes(j_user_input[k])) {
+            oupt += upper_alphabet[upper_shifted.indexOf(j_user_input[k])];
+        }
+        else {
+            oupt += j_user_input[k];
+        }
     }
-    else if(ALPCAP.includes(chr[k])) {
-      oupt += cipcap[ALPCAP.indexOf(chr[k])];
-    }
-    else {
-      oupt += chr[k];
-    }
-  }
-  return oupt;
-}
-
-function Decipher(ALP, cip, ALPCAP, cipcap, chr) {
-  var oupt = "";
-  for(var k = 0; k < chr.length; k++) {
-    if(cip.includes(chr[k])) {
-      oupt += ALP[cip.indexOf(chr[k])];
-    }
-    else if(cipcap.includes(chr[k])) {
-      oupt += ALPCAP[cipcap.indexOf(chr[k])];
-    }
-    else {
-      oupt += chr[k];
-    }
-  }
-  return oupt;
+    return oupt;
 }
 
 function short() {
-  [cip, cipcap] = [[], []]
-  document.getElementById("shift").textContent = shf;
-  sort(algorithm(shf), ALP, ALPCAP, cip, cipcap);
+    [shifted, upper_shifted] = [[], []]
+    shift.textContent = j_shift;
+    sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
 
-  if(document.getElementById("TextToCaesar").checked) {
-    document.getElementById("out").textContent = Encipher(ALP, cip, ALPCAP, cipcap, chr);
-  }
-  else if(document.getElementById("CaesarToText").checked) {
-    document.getElementById("out").textContent = Decipher(ALP, cip, ALPCAP, cipcap, chr);
-  }
+    if(text_to_caesar.checked) {
+        output.textContent = Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
+    }
+    else {
+        output.textContent = Decipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
+    }
 }
 
-function algorithm(shf) {
-  var temp = shf;
-  if(temp >= 0) {
-    temp = temp % 26;
-    return temp;
-  }
-  else {
+function algorithm(j_shift) {
+    var temp = j_shift;
+    if(temp >= 0) {
+    	temp = temp % 26;
+        return temp;
+    }
     while(temp < 0) {
-      temp = (26 + temp) % 26;
+        temp = (26 + temp) % 26;
     }
     return temp;
-  }
 }
