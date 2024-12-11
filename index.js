@@ -111,5 +111,5 @@ function algorithm(j_shift) {
     if(shift >= 0) {
         return shift % 26;
     }
-    return temp % 26 + 26;
+    return shift % 26 + 26;
 }
