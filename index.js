@@ -108,8 +108,8 @@ function short() {
 }
 
 function algorithm(j_shift) {
-    if(shift >= 0) {
-        return shift % 26;
+    if(j_shift >= 0) {
+        return j_shift % 26;
     }
-    return shift % 26 + 26;
+    return j_shift % 26 + 26;
 }
