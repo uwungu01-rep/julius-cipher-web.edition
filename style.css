@@ -54,6 +54,7 @@ body {
 }
 
 #plus, #minus {
+    cursor: pointer;
     font-size: 2em;
     background-color: white;
     border-width: 0px;
@@ -64,6 +65,7 @@ body {
 }
 
 #TextToCaesar, #CaesarToText {
+    cursor: pointer;
     margin-top: -1.3vh;
     height: 4.5vh;
     width: 2.7vh;
@@ -71,6 +73,7 @@ body {
 }
 
 #lttc, #lctt {
+    cursor: pointer;
     font-size: 1.5em
 }
 
@@ -86,6 +89,7 @@ body {
 }
 
 #copy {
+    cursor: pointer;
     font-size: 1.5em;
     background-color: white;
     border: .3vw solid black;
@@ -93,7 +97,7 @@ body {
     margin-bottom: 2vh;
 }
 
-#copy:active {
+#copy:active, #file:active {
     color: rgb(200, 200, 200);
     border-color: rgb(200, 200, 200);
 }
