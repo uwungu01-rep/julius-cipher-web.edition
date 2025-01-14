@@ -17,4 +17,4 @@ A simple web program use to Encipher/Decipher text to/from Caesar Cipher. And ye
 5. Result.
 
 ## License
-This project is licensed 
+This project is licensed under the GNU General Public License 3.0, check [LICENSE](LICENSE) for more details.
