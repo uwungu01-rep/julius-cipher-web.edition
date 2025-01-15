@@ -1,6 +1,7 @@
 const [alphabet, upper_alphabet] = ["abcdefghijklmnopqrstuvwxyz".split(""), "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")];
 
-var [shifted, upper_shifted, j_shift, j_user_input] = [[], [], 7];
+let [shifted, upper_shifted, j_shift, j_user_input] = [[], [], 7];
+let timer = null;
 
 const shift = document.getElementById("shift");
 const user_input = document.getElementById("user_input");
@@ -16,41 +17,44 @@ output.textContent = Encipher(alphabet, shifted, upper_alphabet, upper_shifted, 
 
 copy_button.addEventListener("click", function(){
     navigator.clipboard.writeText(output.innerHTML);
-    copy_button.textContent = "Copied to clipboard!";
-    setTimeout(function() {
-        copy_button.textContent = "Copy Output";
-    }, 1000);
+    copy_button.innerHTML = "Copied to clipboard!";
+    if (timer) {
+        clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+        copy_button.innerHTML = "Copy";
+    }, 500);
 });
 
-text_to_caesar.addEventListener("click", function() {
+text_to_caesar.addEventListener("click", () => {
     j_user_input = document.getElementById("user_input").value;
     sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
     output.innerHTML = Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
 });
 
-caesar_to_text.addEventListener("click", function() {
+caesar_to_text.addEventListener("click", () => {
     j_user_input = document.getElementById("user_input").value;
     sort(algorithm(j_shift), alphabet, upper_alphabet, shifted, upper_shifted);
     output.innerHTML = Decipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input);
 });
 
-document.getElementById("plus").addEventListener("click", function() {
+document.getElementById("plus").addEventListener("click", () => {
     j_shift += 1;
     short()
 });
 
-document.getElementById("minus").addEventListener("click", function() {
+document.getElementById("minus").addEventListener("click", () => {
     j_shift -= 1;
     short()
 });
 
-user_input.addEventListener("input", function() {
+user_input.addEventListener("input", () => {
     j_user_input = user_input.value;
     short()
 });
 
 function sort(j_shift, alphabet, upper_alphabet, shifted, upper_shifted) {
-    for(var i = j_shift; i < alphabet.length + j_shift; i++) {
+    for(let i = j_shift; i < alphabet.length + j_shift; i++) {
         if(i < alphabet.length) {
             shifted.push(alphabet[i]);
             upper_shifted.push(upper_alphabet[i]);
@@ -63,8 +67,8 @@ function sort(j_shift, alphabet, upper_alphabet, shifted, upper_shifted) {
 }
 
 function Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input) {
-    var oupt = "";
-    for(var k = 0; k < j_user_input.length; k++) {
+    let oupt = "";
+    for(let k = 0; k < j_user_input.length; k++) {
         if(alphabet.includes(j_user_input[k])) {
             oupt += shifted[alphabet.indexOf(j_user_input[k])];
         }
@@ -79,8 +83,8 @@ function Encipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input
 }
 
 function Decipher(alphabet, shifted, upper_alphabet, upper_shifted, j_user_input) {
-    var oupt = "";
-    for(var k = 0; k < j_user_input.length; k++) {
+    let oupt = "";
+    for(let k = 0; k < j_user_input.length; k++) {
         if(shifted.includes(j_user_input[k])) {
             oupt += alphabet[shifted.indexOf(j_user_input[k])];
         }
