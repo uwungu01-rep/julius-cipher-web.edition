@@ -1,4 +1,4 @@
-# Caesar Cipher Tool<sup><sup>TM</sup></sup> - Web Edition
+# Julius Cipher - Web Edition
 A simple web program use to Encipher/Decipher text to/from Caesar Cipher. And yes, there are more versions of this program from other programming languages.
 
 ## How this thing works
