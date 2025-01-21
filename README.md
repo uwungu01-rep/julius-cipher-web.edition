@@ -10,7 +10,7 @@ A simple web program use to Encipher/Decipher text to/from Caesar Cipher. And ye
 2. Real-time text processing.
 
 ## Usage
-You can use this <a href="https://uwungu01-rep.github.io/caesar-cipher-tool-web.edition/">here</a>.
+You can use this <a href="https://uwungu01-rep.github.io/julius-cipher-web.edition/">here</a>.
 1. Choose processing mode.
 2. Type your text into the input field.
 3. Cycle through the shifts until the desired texts appear.
